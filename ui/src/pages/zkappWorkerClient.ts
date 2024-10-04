@@ -38,16 +38,27 @@ export default class ZkappWorkerClient {
         });
     }
 
-    async getNum(): Promise<Field> {
-        const result = await this._call('getNum', {});
+    async getRoot(): Promise<Field> {
+        const result = await this._call('getRoot', {});
         return Field.fromJSON(JSON.parse(result as string));
     }
 
-    createUpdateTransaction() {
-        return this._call('createUpdateTransaction', {});
+    async setRoot(commitment: Field) {
+        debugger
+        return this._call('setRoot', {
+            commitment: JSON.stringify(commitment.toJSON()),
+        });
     }
 
-    proveUpdateTransaction() {
+    async isMember({ proof, key }: { proof: any; key: any }) {
+        return this._call('isMember', {
+            proof: JSON.stringify(proof),
+            key: JSON.stringify(key),
+        });
+    }
+
+
+    async proveUpdateTransaction() {
         return this._call('proveUpdateTransaction', {});
     }
 
