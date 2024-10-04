@@ -1,11 +1,8 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
-<<<<<<< HEAD
 https://spreadzp.github.io/04-zkapp-browser-ui/
-=======
 
->>>>>>> b2c5c5d52cb0975743b6863083e24a526f8ebf8c
 First, run the development server:
 
 ```bash
