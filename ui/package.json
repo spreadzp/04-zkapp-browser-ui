@@ -3,11 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build --no-lint",
+    "dev": "next dev", 
     "start": "next start",
     "lint": "next lint",
     "ts-watch": "tsc --noEmit --incremental --watch",
+    "export-o": "next export -o ui/out",
+    "build": "next build && next export && mv out ui/out",
     "deploy": "next build --no-lint && touch out/.nojekyll && node ./ghp-postbuild && git add -f out && git commit -m \"Deploy gh-pages-1\" && cd .. && git subtree push --prefix ui/out origin gh-pages"
   },
   "dependencies": {
