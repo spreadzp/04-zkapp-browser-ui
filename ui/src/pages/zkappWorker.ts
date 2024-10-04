@@ -1,14 +1,14 @@
-import { Mina, PublicKey, fetchAccount } from 'o1js';
+import { Field, Mina, PrivateKey, PublicKey, fetchAccount } from 'o1js';
 
 type Transaction = Awaited<ReturnType<typeof Mina.transaction>>;
 
 // ---------------------------------------------------------------------------------------
 
-import type { Add } from '../../../contracts/src/Add';
+import { Membership, MyMerkleWitness } from 'membership-zk';
 
 const state = {
-    Add: null as null | typeof Add,
-    zkapp: null as null | Add,
+    Membership: null as null | typeof Membership,
+    zkapp: null as null | Membership,
     transaction: null as null | Transaction,
 };
 
@@ -23,11 +23,10 @@ const functions = {
         Mina.setActiveInstance(Network);
     },
     loadContract: async (args: {}) => {
-        const { Add } = await import('../../../contracts/build/src/Add.js');
-        state.Add = Add;
+        state.Membership = Membership;
     },
     compileContract: async (args: {}) => {
-        await state.Add!.compile();
+        await state.Membership!.compile();
     },
     fetchAccount: async (args: { publicKey58: string }) => {
         const publicKey = PublicKey.fromBase58(args.publicKey58);
@@ -35,18 +34,33 @@ const functions = {
     },
     initZkappInstance: async (args: { publicKey58: string }) => {
         const publicKey = PublicKey.fromBase58(args.publicKey58);
-        state.zkapp = new state.Add!(publicKey);
+        state.zkapp = new state.Membership!(publicKey);
     },
-    getNum: async (args: {}) => {
-        const currentNum = await state.zkapp!.num.get();
-        return JSON.stringify(currentNum.toJSON());
+    getRoot: async (args: {}) => {
+        const currentRoot = await state.zkapp!.storageTreeRoot.get();
+        console.log("🚀 ~ getRoot: ~ currentRoot:", currentRoot)
+        return JSON.stringify(currentRoot.toJSON());
     },
-    createUpdateTransaction: async (args: {}) => {
+    setRoot: async (args: { commitment: string }) => {
+        debugger
+        const commitment = Field.fromJSON(JSON.parse(args.commitment));
         const transaction = await Mina.transaction(async () => {
-            await state.zkapp!.update();
+            await state.zkapp!.setRoot(commitment);
         });
         state.transaction = transaction;
+
     },
+    isMember: async (args: { proof: string, key: string }) => {
+        const proof = MyMerkleWitness.fromJSON(JSON.parse(args.proof));
+        const key = PrivateKey.fromJSON(JSON.parse(args.key));
+        return JSON.stringify(await state.zkapp!.isMember(proof, key));
+    },
+    // createUpdateTransaction: async (args: {}) => {
+
+    //         await state.zkapp!.update();
+    //     });
+    //     state.transaction = transaction;
+    // },
     proveUpdateTransaction: async (args: {}) => {
         await state.transaction!.prove();
     },
