@@ -19,7 +19,7 @@ module.exports = ((_global_process = __webpack_require__.g.process) == null ? vo
     (window.__NEXT_P = window.__NEXT_P || []).push([
       "/",
       function () {
-        return __webpack_require__(9470);
+        return __webpack_require__(1168);
       }
     ]);
     if(false) {}
@@ -27,7 +27,7 @@ module.exports = ((_global_process = __webpack_require__.g.process) == null ? vo
 
 /***/ }),
 
-/***/ 9470:
+/***/ 1168:
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -43,159 +43,22 @@ __webpack_require__.d(__webpack_exports__, {
 var jsx_runtime = __webpack_require__(5893);
 // EXTERNAL MODULE: ./node_modules/react/index.js
 var react = __webpack_require__(7294);
-// EXTERNAL MODULE: ./src/styles/Home.module.css
-var Home_module = __webpack_require__(2003);
-var Home_module_default = /*#__PURE__*/__webpack_require__.n(Home_module);
-;// CONCATENATED MODULE: ./src/components/GradientBG.js
-// @ts-nocheck
-
-
-
-function GradientBG(param) {
-    let { children } = param;
-    const canvasRef = (0,react.useRef)(null);
-    const [context, setContext] = (0,react.useState)(null);
-    const [pixels, setPixels] = (0,react.useState)([]);
-    function Color(h, s, l, a) {
-        this.h = h;
-        this.s = s;
-        this.l = l;
-        this.a = a;
-        this.dir = Math.random() > 0.5 ? -1 : 1;
-        this.toString = function() {
-            return "hsla(" + this.h + ", " + this.s + "%, " + this.l + "%, " + this.a + ")";
-        };
-    }
-    function Pixel(x, y, w, h, color) {
-        this.x = {
-            c: x,
-            min: 0,
-            max: canvasRef.current.width,
-            dir: Math.random() > 0.5 ? -1 : 1
-        };
-        this.y = {
-            c: y,
-            min: 0,
-            max: canvasRef.current.height,
-            dir: Math.random() > 0.5 ? -1 : 1
-        };
-        this.w = {
-            c: w,
-            min: 2,
-            max: canvasRef.current.width,
-            dir: Math.random() > 0.5 ? -1 : 1
-        };
-        this.h = {
-            c: h,
-            min: 2,
-            max: canvasRef.current.height,
-            dir: Math.random() > 0.5 ? -1 : 1
-        };
-        this.color = color;
-        this.direction = Math.random() > 0.1 ? -1 : 1;
-        this.velocity = (Math.random() * 100 + 100) * 0.01 * this.direction;
-    }
-    function updatePixel(pixel) {
-        if (pixel.x.c <= pixel.x.min || pixel.x.c >= pixel.x.max) {
-            pixel.x.dir *= -1;
-        }
-        if (pixel.y.c <= pixel.y.min || pixel.y.c >= pixel.y.max) {
-            pixel.y.dir *= -1;
-        }
-        if (pixel.w.c <= pixel.w.min || pixel.w.c >= pixel.w.max) {
-            pixel.w.dir *= -1;
-        }
-        if (pixel.h.c <= pixel.h.min || pixel.h.c >= pixel.h.max) {
-            pixel.h.dir *= -1;
-        }
-        if (pixel.color.a <= 0 || pixel.color.a >= 0.75) {
-            pixel.color.dir *= -1;
-        }
-        pixel.x.c += 0.005 * pixel.x.dir;
-        pixel.y.c += 0.005 * pixel.y.dir;
-        pixel.w.c += 0.005 * pixel.w.dir;
-        pixel.h.c += 0.005 * pixel.h.dir;
-    }
-    function renderPixel(pixel) {
-        context.restore();
-        context.fillStyle = pixel.color.toString();
-        context.fillRect(pixel.x.c, pixel.y.c, pixel.w.c, pixel.h.c);
-    }
-    function paint() {
-        if (canvasRef.current) {
-            context.clearRect(0, 0, canvasRef.current.width, canvasRef.current.height);
-            for(let i = 0; i < pixels.length; i++){
-                updatePixel(pixels[i]);
-                renderPixel(pixels[i]);
-            }
-        }
-    }
-    (0,react.useEffect)(()=>{
-        if (canvasRef.current) {
-            const canvas = canvasRef.current;
-            const ctx = canvas.getContext("2d");
-            setContext(ctx);
-            const currentPixels = [
-                new Pixel(1, 1, 3, 4, new Color(252, 70, 67, 0.8)),
-                new Pixel(0, 0, 1, 1, new Color(0, 0, 98, 1)),
-                new Pixel(0, 3, 2, 2, new Color(11, 100, 62, 0.8)),
-                new Pixel(4, 0, 4, 3, new Color(190, 94, 75, 0.8)),
-                new Pixel(3, 1, 1, 2, new Color(324, 98, 50, 0.1))
-            ];
-            setPixels(currentPixels);
-        }
-    }, []);
-    (0,react.useEffect)(()=>{
-        let animationFrameId;
-        if (context) {
-            const animate = ()=>{
-                paint();
-                animationFrameId = window.requestAnimationFrame(animate);
-            };
-            animate();
-        }
-        return ()=>{
-            window.cancelAnimationFrame(animationFrameId);
-        };
-    }, [
-        paint,
-        pixels,
-        context
-    ]);
-    return /*#__PURE__*/ (0,jsx_runtime.jsxs)(jsx_runtime.Fragment, {
-        children: [
-            /*#__PURE__*/ (0,jsx_runtime.jsx)("div", {
-                className: Home_module.background,
-                children: /*#__PURE__*/ (0,jsx_runtime.jsx)("canvas", {
-                    className: Home_module.backgroundGradients,
-                    width: "6",
-                    height: "6",
-                    ref: canvasRef
-                })
-            }),
-            /*#__PURE__*/ (0,jsx_runtime.jsx)("div", {
-                className: Home_module.container,
-                children: children
-            })
-        ]
-    });
-}
-
 ;// CONCATENATED MODULE: ./src/components/SetMembersForm.tsx
-// src/components/SetMembersForm.tsx 
 
 
 const SetMembersForm = (param)=>{
     let { handleMembersChange, handleSetMembers } = param;
     return /*#__PURE__*/ (0,jsx_runtime.jsxs)("div", {
+        className: "mt-4",
         children: [
             /*#__PURE__*/ (0,jsx_runtime.jsx)("textarea", {
+                className: "w-full p-2 border border-gray-300 rounded-md bg-transparent focus:outline-none focus:ring-2 focus:ring-blue-500",
                 placeholder: "Enter members (one per line)",
                 onChange: handleMembersChange,
                 rows: 10
             }),
             /*#__PURE__*/ (0,jsx_runtime.jsx)("button", {
-                className: (Home_module_default()).card,
+                className: "mt-2 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-700",
                 onClick: handleSetMembers,
                 children: "Set Members"
             })
@@ -205,8 +68,6 @@ const SetMembersForm = (param)=>{
 /* harmony default export */ var components_SetMembersForm = (SetMembersForm);
 
 ;// CONCATENATED MODULE: ./src/components/UIComponents.tsx
-// UIComponents.tsx
-
 
 
  // Import the new SetMembersForm component
@@ -233,9 +94,11 @@ const UIComponents = (param)=>{
             href: auroLink,
             target: "_blank",
             rel: "noreferrer",
+            className: "text-blue-500 hover:underline",
             children: "Install Auro wallet here"
         });
         hasWallet = /*#__PURE__*/ (0,jsx_runtime.jsxs)("div", {
+            className: "text-red-500",
             children: [
                 "Could not find a wallet. ",
                 auroLinkElem
@@ -246,18 +109,14 @@ const UIComponents = (param)=>{
         href: transactionlink,
         target: "_blank",
         rel: "noreferrer",
-        style: {
-            textDecoration: "underline"
-        },
+        className: "text-blue-500 hover:underline",
         children: "View transaction"
-    }) : displayText;
+    }) : /*#__PURE__*/ (0,jsx_runtime.jsx)("span", {
+        className: "text-gray-700",
+        children: displayText
+    });
     let setup = /*#__PURE__*/ (0,jsx_runtime.jsxs)("div", {
-        className: (Home_module_default()).start,
-        style: {
-            fontWeight: "bold",
-            fontSize: "1.5rem",
-            paddingBottom: "5rem"
-        },
+        className: "text-xl font-bold mb-8 text-center",
         children: [
             stepDisplay,
             hasWallet
@@ -267,17 +126,17 @@ const UIComponents = (param)=>{
     if (state.hasBeenSetup && !state.accountExists) {
         const faucetLink = "https://faucet.minaprotocol.com/?address=" + state.publicKey.toBase58();
         accountDoesNotExist = /*#__PURE__*/ (0,jsx_runtime.jsxs)("div", {
+            className: "mt-4 text-center",
             children: [
                 /*#__PURE__*/ (0,jsx_runtime.jsx)("span", {
-                    style: {
-                        paddingRight: "1rem"
-                    },
+                    className: "mr-2",
                     children: "Account does not exist."
                 }),
                 /*#__PURE__*/ (0,jsx_runtime.jsx)("a", {
                     href: faucetLink,
                     target: "_blank",
                     rel: "noreferrer",
+                    className: "text-blue-500 hover:underline",
                     children: "Visit the faucet to fund this fee payer account"
                 })
             ]
@@ -286,10 +145,7 @@ const UIComponents = (param)=>{
     let mainContent;
     if (state.hasBeenSetup && state.accountExists) {
         mainContent = /*#__PURE__*/ (0,jsx_runtime.jsxs)("div", {
-            style: {
-                justifyContent: "center",
-                alignItems: "center"
-            },
+            className: "flex flex-col items-center space-y-4",
             children: [
                 /*#__PURE__*/ (0,jsx_runtime.jsxs)("div", {
                     children: [
@@ -301,24 +157,19 @@ const UIComponents = (param)=>{
                     children: displayText
                 }),
                 /*#__PURE__*/ (0,jsx_runtime.jsxs)("div", {
-                    className: (Home_module_default()).center,
-                    style: {
-                        padding: 0
-                    },
                     children: [
                         "Current root in zkApp: ",
-                        state.currentRoot.toString(),
-                        " "
+                        state.currentRoot.toString()
                     ]
                 }),
                 /*#__PURE__*/ (0,jsx_runtime.jsx)("button", {
-                    className: (Home_module_default()).card,
+                    className: "bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700",
                     onClick: onSendTransaction,
                     disabled: state.creatingTransaction,
                     children: "Send Transaction"
                 }),
                 /*#__PURE__*/ (0,jsx_runtime.jsx)("button", {
-                    className: (Home_module_default()).card,
+                    className: "bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-700",
                     onClick: onRefreshCurrentRoot,
                     children: "Get Current Root"
                 }),
@@ -330,15 +181,9 @@ const UIComponents = (param)=>{
         });
     }
     return /*#__PURE__*/ (0,jsx_runtime.jsx)("div", {
-        className: (Home_module_default()).main,
-        style: {
-            padding: 0
-        },
+        className: "flex flex-col items-center justify-center min-h-screen p-4",
         children: /*#__PURE__*/ (0,jsx_runtime.jsxs)("div", {
-            className: (Home_module_default()).center,
-            style: {
-                padding: 0
-            },
+            className: "text-center",
             children: [
                 setup,
                 accountDoesNotExist,
@@ -636,8 +481,123 @@ const StateManager = (param)=>{
 };
 /* harmony default export */ var components_StateManager = (StateManager);
 
+;// CONCATENATED MODULE: ./src/components/StarryBackground.tsx
+
+
+const StarryBackground = (param)=>{
+    let { children } = param;
+    const canvasRef = (0,react.useRef)(null);
+    const [isButtonMoved, setIsButtonMoved] = (0,react.useState)(false);
+    (0,react.useEffect)(()=>{
+        const canvas = canvasRef.current;
+        if (!canvas) return;
+        const ctx = canvas.getContext("2d");
+        if (!ctx) return;
+        let animationFrameId;
+        const stars = [];
+        const starCount = 100;
+        const connectionDistance = 150;
+        class Star {
+            update(width, height) {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                if (this.x < 0 || this.x > width) this.speedX *= -1;
+                if (this.y < 0 || this.y > height) this.speedY *= -1;
+            }
+            draw(ctx) {
+                ctx.fillStyle = "white";
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+            constructor(width, height){
+                this.x = Math.random() * width;
+                this.y = Math.random() * height;
+                this.size = Math.random() * 2 + 1;
+                this.speedX = Math.random() * 0.5 - 0.25;
+                this.speedY = Math.random() * 0.5 - 0.25;
+            }
+        }
+        function init() {
+            if (canvas) {
+                const { width, height } = canvas;
+                for(let i = 0; i < starCount; i++){
+                    stars.push(new Star(width, height));
+                }
+            }
+        }
+        function connectStars(ctx) {
+            for(let i = 0; i < stars.length; i++){
+                for(let j = i + 1; j < stars.length; j++){
+                    const dx = stars[i].x - stars[j].x;
+                    const dy = stars[i].y - stars[j].y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+                    if (distance < connectionDistance) {
+                        ctx.strokeStyle = "rgba(255, 255, 255, ".concat(1 - distance / connectionDistance, ")");
+                        ctx.lineWidth = 0.5;
+                        ctx.beginPath();
+                        ctx.moveTo(stars[i].x, stars[i].y);
+                        ctx.lineTo(stars[j].x, stars[j].y);
+                        ctx.stroke();
+                    }
+                }
+            }
+        }
+        function animate() {
+            if (ctx && canvas) {
+                ctx.fillStyle = "#4B0082";
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                for (const star of stars){
+                    star.update(canvas.width, canvas.height);
+                    star.draw(ctx);
+                }
+                connectStars(ctx);
+                animationFrameId = requestAnimationFrame(animate);
+            }
+        }
+        function resizeCanvas() {
+            if (canvas) {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            }
+        }
+        window.addEventListener("resize", resizeCanvas);
+        resizeCanvas();
+        init();
+        animate();
+        return ()=>{
+            window.removeEventListener("resize", resizeCanvas);
+            cancelAnimationFrame(animationFrameId);
+        };
+    }, []);
+    return /*#__PURE__*/ (0,jsx_runtime.jsxs)(jsx_runtime.Fragment, {
+        children: [
+            /*#__PURE__*/ (0,jsx_runtime.jsx)("canvas", {
+                ref: canvasRef,
+                style: {
+                    position: "fixed",
+                    top: 0,
+                    left: 0,
+                    zIndex: -1
+                }
+            }),
+            /*#__PURE__*/ (0,jsx_runtime.jsxs)("div", {
+                className: "z-auto relative",
+                children: [
+                    /*#__PURE__*/ (0,jsx_runtime.jsx)("button", {
+                        className: "absolute top-4 ".concat(isButtonMoved ? "left-auto right-4" : "left-4", " transition-all duration-500 ease-in-out"),
+                        onClick: ()=>setIsButtonMoved(!isButtonMoved),
+                        children: isButtonMoved ? "Moved" : "Move"
+                    }),
+                    children
+                ]
+            })
+        ]
+    });
+};
+/* harmony default export */ var components_StarryBackground = (StarryBackground);
+
 ;// CONCATENATED MODULE: ./src/pages/index.page.tsx
-// Home.tsx
 
 
 
@@ -658,27 +618,22 @@ function Home() {
         setDisplayText,
         setTransactionLink
     });
-    return /*#__PURE__*/ (0,jsx_runtime.jsx)(GradientBG, {
-        children: /*#__PURE__*/ (0,jsx_runtime.jsx)(components_UIComponents, {
-            state: state,
-            displayText: displayText,
-            transactionlink: transactionlink,
-            account: account,
-            onSendTransaction: onSendTransaction,
-            onRefreshCurrentRoot: onRefreshCurrentRoot,
-            setMembers: setMembers
+    return /*#__PURE__*/ (0,jsx_runtime.jsx)("div", {
+        className: "flex flex-col items-center justify-center min-h-screen ",
+        children: /*#__PURE__*/ (0,jsx_runtime.jsx)(components_StarryBackground, {
+            children: /*#__PURE__*/ (0,jsx_runtime.jsx)(components_UIComponents, {
+                state: state,
+                displayText: displayText,
+                transactionlink: transactionlink,
+                account: account,
+                onSendTransaction: onSendTransaction,
+                onRefreshCurrentRoot: onRefreshCurrentRoot,
+                setMembers: setMembers
+            })
         })
     });
 }
 
-
-/***/ }),
-
-/***/ 2003:
-/***/ (function(module) {
-
-// extracted by mini-css-extract-plugin
-module.exports = {"main":"Home_main__2uIek","background":"Home_background__CTycG","backgroundGradients":"Home_backgroundGradients__VUGb4","container":"Home_container__9OuOz","tagline":"Home_tagline__Jw01K","start":"Home_start__ELciH","code":"Home_code__BZK8z","grid":"Home_grid__vo_ES","card":"Home_card__HIlp_","center":"Home_center__Y_rV4","logo":"Home_logo__ZEOng","content":"Home_content__Qnbja"};
 
 /***/ }),
 

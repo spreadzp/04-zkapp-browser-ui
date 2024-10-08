@@ -144,7 +144,7 @@ const functions = {
         state.zkapp = new state.Membership(publicKey);
     },
     getRoot: async (args)=>{
-        const currentRoot = await state.zkapp.storageTreeRoot.get();
+        const currentRoot = await state.zkapp.commitment.get();
         console.log("\uD83D\uDE80 ~ getRoot: ~ currentRoot:", currentRoot);
         return JSON.stringify(currentRoot.toJSON());
     },
