@@ -1,6 +1,4 @@
-// UIComponents.tsx
 import React, { useState } from 'react';
-import styles from '../styles/Home.module.css';
 import { State } from './StateManager'; // Import the State type from StateManager
 import SetMembersForm from './SetMembersForm'; // Import the new SetMembersForm component
 
@@ -32,18 +30,17 @@ const UIComponents = ({ state, displayText, transactionlink, account, onSendTran
         if (members.length > 0) {
             await setMembers(members);
         }
-
     };
 
     let hasWallet;
     if (state.hasWallet != null && !state.hasWallet) {
         const auroLink = 'https://www.aurowallet.com/';
         const auroLinkElem = (
-            <a href={auroLink} target="_blank" rel="noreferrer">
+            <a href={auroLink} target="_blank" rel="noreferrer" className="text-blue-500 hover:underline">
                 Install Auro wallet here
             </a>
         );
-        hasWallet = <div>Could not find a wallet. {auroLinkElem}</div>;
+        hasWallet = <div className="text-red-500">Could not find a wallet. {auroLinkElem}</div>;
     }
 
     const stepDisplay = transactionlink ? (
@@ -51,19 +48,16 @@ const UIComponents = ({ state, displayText, transactionlink, account, onSendTran
             href={transactionlink}
             target="_blank"
             rel="noreferrer"
-            style={{ textDecoration: 'underline' }}
+            className="text-blue-500 hover:underline"
         >
             View transaction
         </a>
     ) : (
-        displayText
+        <span className="">{displayText}</span>
     );
 
     let setup = (
-        <div
-            className={styles.start}
-            style={{ fontWeight: 'bold', fontSize: '1.5rem', paddingBottom: '5rem' }}
-        >
+        <div className="text-xl font-bold mb-8 text-center">
             {stepDisplay}
             {hasWallet}
         </div>
@@ -74,9 +68,9 @@ const UIComponents = ({ state, displayText, transactionlink, account, onSendTran
         const faucetLink =
             'https://faucet.minaprotocol.com/?address=' + state.publicKey!.toBase58();
         accountDoesNotExist = (
-            <div>
-                <span style={{ paddingRight: '1rem' }}>Account does not exist.</span>
-                <a href={faucetLink} target="_blank" rel="noreferrer">
+            <div className="mt-4 text-center">
+                <span className="mr-2">Account does not exist.</span>
+                <a href={faucetLink} target="_blank" rel="noreferrer" className="text-blue-500 hover:underline">
                     Visit the faucet to fund this fee payer account
                 </a>
             </div>
@@ -86,20 +80,18 @@ const UIComponents = ({ state, displayText, transactionlink, account, onSendTran
     let mainContent;
     if (state.hasBeenSetup && state.accountExists) {
         mainContent = (
-            <div style={{ justifyContent: 'center', alignItems: 'center' }}>
+            <div className="flex flex-col items-center space-y-4 text-white">
                 <div>Connected account {`${account.slice(0, 6)}...${account.slice(-4)}`}</div>
                 <div>{displayText}</div>
-                <div className={styles.center} style={{ padding: 0 }}>
-                    Current root in zkApp: {state.currentRoot!.toString()}{' '}
-                </div>
+                <div>Current root in zkApp: {state.currentRoot!.toString()}</div>
                 <button
-                    className={styles.card}
+                    className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700"
                     onClick={onSendTransaction}
                     disabled={state.creatingTransaction}
                 >
                     Send Transaction
                 </button>
-                <button className={styles.card} onClick={onRefreshCurrentRoot}>
+                <button className="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-700" onClick={onRefreshCurrentRoot}>
                     Get Current Root
                 </button>
                 <SetMembersForm
@@ -111,8 +103,8 @@ const UIComponents = ({ state, displayText, transactionlink, account, onSendTran
     }
 
     return (
-        <div className={styles.main} style={{ padding: 0 }}>
-            <div className={styles.center} style={{ padding: 0 }}>
+        <div className="flex flex-col items-center justify-center min-h-screen p-4 text-white">
+            <div className="text-center">
                 {setup}
                 {accountDoesNotExist}
                 {mainContent}

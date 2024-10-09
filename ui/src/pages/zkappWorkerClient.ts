@@ -40,6 +40,7 @@ export default class ZkappWorkerClient {
 
     async getRoot(): Promise<Field> {
         const result = await this._call('getRoot', {});
+        console.log(result);
         return Field.fromJSON(JSON.parse(result as string));
     }
 

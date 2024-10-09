@@ -4,7 +4,7 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 https://spreadzp.github.io/04-zkapp-browser-ui/
 
 First, run the development server:
-
+LZnbeG - @MrPaul 
 ```bash
 npm run dev
 # or

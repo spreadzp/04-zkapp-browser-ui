@@ -1,3 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+:root {
+  --white: #fff;
+  --primary: #007bff;
+}
+
 @font-face {
   font-family: 'ABC Monument Grotesk';
   font-style: normal;
@@ -21,14 +29,14 @@
     url('/assets/fonts/ABCMonumentGrotesk-Bold.woff') format('woff');
 }
 
-:root {
+/* :root {
   --max-width: 1100px;
   --border-radius: 12px;
   --font-monument: 'ABC Monument Grotesk', sans-serif;
   --font-monument-bold: 'ABC Monument Grotesk Bold', sans-serif;
   --font-monument-light: 'ABC Monument Grotesk Light', sans-serif;
   --foreground-rgb: 0, 0, 0;
-}
+} */
 
 * {
   box-sizing: border-box;
@@ -46,4 +54,47 @@ body {
 a {
   color: inherit;
   text-decoration: none;
+}
+
+
+/* styles.css */
+@keyframes moveIcon {
+  0% {
+      transform: translate(0, 0) rotate(0deg);
+  }
+  25% {
+      transform: translate(calc(100vw - 50px), 0) rotate(90deg);
+  }
+  50% {
+      transform: translate(calc(100vw - 50px), calc(100vh - 50px)) rotate(180deg);
+  }
+  75% {
+      transform: translate(0, calc(100vh - 50px)) rotate(270deg);
+  }
+  100% {
+      transform: translate(0, 0) rotate(360deg);
+  }
+}
+
+.move-icon {
+  animation: moveIcon 45s linear infinite;
+}
+
+@keyframes openGate {
+  0% {
+      transform: translate(0, 0) scale(1);
+      opacity: 1;
+  }
+  50% {
+      transform: translate(calc(50vw - 25px), calc(50vh - 25px)) scale(3);
+      opacity: 1;
+  }
+  100% {
+      transform: translate(calc(50vw - 25px), calc(50vh - 25px)) scale(0);
+      opacity: 0;
+  }
+}
+
+.open-gate {
+  animation: openGate 3s linear forwards;
 }

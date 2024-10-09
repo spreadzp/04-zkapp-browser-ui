@@ -1,5 +1,4 @@
-// src/components/SetMembersForm.tsx 
-import styles from '../styles/Home.module.css';
+import React from 'react';
 
 interface SetMembersFormProps {
     handleMembersChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
@@ -8,13 +7,17 @@ interface SetMembersFormProps {
 
 const SetMembersForm = ({ handleMembersChange, handleSetMembers }: SetMembersFormProps) => {
     return (
-        <div>
+        <div className="mt-4">
             <textarea
+                className="w-full p-2 border border-gray-300 rounded-md bg-transparent focus:outline-none focus:ring-2 focus:ring-blue-500"
                 placeholder="Enter members (one per line)"
                 onChange={handleMembersChange}
                 rows={10} // Adjust the number of rows as needed
             />
-            <button className={styles.card} onClick={handleSetMembers}>
+            <button
+                className="mt-2 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-700"
+                onClick={handleSetMembers}
+            >
                 Set Members
             </button>
         </div>
