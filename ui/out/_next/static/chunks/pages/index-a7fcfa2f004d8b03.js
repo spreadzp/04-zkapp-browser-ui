@@ -19,7 +19,7 @@ module.exports = ((_global_process = __webpack_require__.g.process) == null ? vo
     (window.__NEXT_P = window.__NEXT_P || []).push([
       "/",
       function () {
-        return __webpack_require__(1168);
+        return __webpack_require__(4691);
       }
     ]);
     if(false) {}
@@ -27,7 +27,7 @@ module.exports = ((_global_process = __webpack_require__.g.process) == null ? vo
 
 /***/ }),
 
-/***/ 1168:
+/***/ 4691:
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -112,7 +112,7 @@ const UIComponents = (param)=>{
         className: "text-blue-500 hover:underline",
         children: "View transaction"
     }) : /*#__PURE__*/ (0,jsx_runtime.jsx)("span", {
-        className: "text-gray-700",
+        className: "",
         children: displayText
     });
     let setup = /*#__PURE__*/ (0,jsx_runtime.jsxs)("div", {
@@ -145,7 +145,7 @@ const UIComponents = (param)=>{
     let mainContent;
     if (state.hasBeenSetup && state.accountExists) {
         mainContent = /*#__PURE__*/ (0,jsx_runtime.jsxs)("div", {
-            className: "flex flex-col items-center space-y-4",
+            className: "flex flex-col items-center space-y-4 text-white",
             children: [
                 /*#__PURE__*/ (0,jsx_runtime.jsxs)("div", {
                     children: [
@@ -181,7 +181,7 @@ const UIComponents = (param)=>{
         });
     }
     return /*#__PURE__*/ (0,jsx_runtime.jsx)("div", {
-        className: "flex flex-col items-center justify-center min-h-screen p-4",
+        className: "flex flex-col items-center justify-center min-h-screen p-4 text-white",
         children: /*#__PURE__*/ (0,jsx_runtime.jsxs)("div", {
             className: "text-center",
             children: [
@@ -317,6 +317,7 @@ class ZkappWorkerClient {
     }
     async getRoot() {
         const result = await this._call("getRoot", {});
+        console.log(result);
         return web/* Field */.gN.fromJSON(JSON.parse(result));
     }
     async setRoot(commitment) {
@@ -481,13 +482,94 @@ const StateManager = (param)=>{
 };
 /* harmony default export */ var components_StateManager = (StateManager);
 
+;// CONCATENATED MODULE: ./src/components/Icon.tsx
+
+const AdminIcon = ()=>/*#__PURE__*/ (0,jsx_runtime.jsxs)("svg", {
+        xmlns: "http://www.w3.org/2000/svg",
+        viewBox: "0 0 24 24",
+        fill: "none",
+        stroke: "white",
+        strokeWidth: "2",
+        strokeLinecap: "round",
+        strokeLinejoin: "round",
+        className: "w-6 h-6",
+        children: [
+            /*#__PURE__*/ (0,jsx_runtime.jsx)("path", {
+                d: "M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"
+            }),
+            /*#__PURE__*/ (0,jsx_runtime.jsx)("path", {
+                d: "M12 4c2.76 0 5.22 1.12 7.01 2.92L12 13.83l-7-6.93C6.79 5.11 9.24 4 12 4z"
+            }),
+            /*#__PURE__*/ (0,jsx_runtime.jsx)("path", {
+                d: "M19.01 6.92C20.27 8.38 21 10.12 21 12c0 4.97-4.03 9-9 9-2.76 0-5.22-1.12-7.01-2.92L12 13.17l7 6.93C17.21 18.89 14.76 20 12 20c-4.41 0-8-3.59-8-8 0-1.88.73-3.62 1.99-5.08L12 13.83V4c2.76 0 5.22 1.12 7.01 2.92z"
+            }),
+            /*#__PURE__*/ (0,jsx_runtime.jsx)("path", {
+                d: "M12 13.83l-7-6.93C6.79 5.11 9.24 4 12 4v9.83z"
+            }),
+            /*#__PURE__*/ (0,jsx_runtime.jsx)("path", {
+                d: "M12 8c2.21 0 4 1.79 4 4s-1.79 4-4 4-4-1.79-4-4 1.79-4 4-4z"
+            }),
+            /*#__PURE__*/ (0,jsx_runtime.jsx)("path", {
+                d: "M12 16c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4z"
+            }),
+            /*#__PURE__*/ (0,jsx_runtime.jsx)("path", {
+                d: "M12 14c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2z"
+            })
+        ]
+    });
+const SpaceShipIcon = ()=>/*#__PURE__*/ (0,jsx_runtime.jsxs)("svg", {
+        xmlns: "http://www.w3.org/2000/svg",
+        xmlnsXlink: "http://www.w3.org/1999/xlink",
+        version: "1.1",
+        width: "32",
+        height: "32",
+        viewBox: "0 0 32 32",
+        preserveAspectRatio: "xMidYMid meet",
+        children: [
+            /*#__PURE__*/ (0,jsx_runtime.jsx)("defs", {}),
+            /*#__PURE__*/ (0,jsx_runtime.jsx)("g", {
+                style: {
+                    stroke: "none",
+                    strokeWidth: "0",
+                    strokeDasharray: "none",
+                    strokeLinecap: "butt",
+                    strokeLinejoin: "miter",
+                    strokeMiterlimit: "10",
+                    fill: "none",
+                    fillRule: "nonzero",
+                    opacity: "1"
+                },
+                transform: "translate(1.4065934065934016 1.4065934065934016) scale(0.35125 0.35125)",
+                children: /*#__PURE__*/ (0,jsx_runtime.jsx)("path", {
+                    d: "M 89.983 5.63 c -0.006 -0.267 -0.016 -0.534 -0.026 -0.802 c -0.011 -0.299 -0.02 -0.597 -0.036 -0.897 c -0.031 -0.602 -0.07 -1.207 -0.121 -1.814 c -0.081 -0.973 -0.854 -1.745 -1.827 -1.827 c -0.607 -0.051 -1.21 -0.089 -1.811 -0.121 c -0.305 -0.016 -0.607 -0.025 -0.909 -0.036 c -0.262 -0.009 -0.525 -0.02 -0.786 -0.025 c -0.437 -0.01 -0.871 -0.013 -1.304 -0.013 c -0.072 0 -0.145 0 -0.217 0.001 c -8.628 0.042 -16.548 2.16 -24.544 6.526 C 58.261 6.7 58.12 6.773 57.979 6.85 c -0.05 0.028 -0.099 0.052 -0.149 0.08 c -0.011 0.006 -0.02 0.016 -0.031 0.022 c -6.556 3.654 -13.101 8.811 -19.875 15.585 c -0.77 0.77 -1.523 1.55 -2.268 2.334 l -13.164 1.001 c -0.385 0.029 -0.753 0.169 -1.06 0.402 L 0.785 41.987 c -0.657 0.5 -0.94 1.352 -0.711 2.145 c 0.228 0.793 0.92 1.364 1.742 1.439 l 19.373 1.749 l 6.134 6.134 c -2.174 0.497 -4.389 1.715 -6.286 3.611 c -1.136 1.137 -2.048 2.411 -2.716 3.803 c -0.873 1.849 -2.79 6.61 -4.82 11.651 l -0.991 2.459 c -0.3 0.744 -0.127 1.595 0.441 2.162 c 0.382 0.383 0.894 0.586 1.415 0.586 c 0.251 0 0.505 -0.048 0.748 -0.146 l 2.547 -1.027 c 5 -2.014 9.723 -3.917 11.576 -4.79 c 1.38 -0.664 2.655 -1.576 3.79 -2.711 c 1.896 -1.896 3.113 -4.111 3.61 -6.285 l 5.952 5.952 l 1.749 19.372 c 0.074 0.822 0.646 1.514 1.439 1.742 c 0.183 0.053 0.369 0.078 0.553 0.078 c 0.614 0 1.207 -0.283 1.592 -0.789 l 15.711 -20.646 c 0.233 -0.307 0.373 -0.675 0.402 -1.06 l 0.971 -12.775 c 0.857 -0.811 1.706 -1.635 2.547 -2.475 c 6.779 -6.779 11.939 -13.327 15.594 -19.887 c 0.004 -0.007 0.01 -0.013 0.014 -0.02 c 0.018 -0.032 0.033 -0.063 0.051 -0.095 c 0.167 -0.301 0.326 -0.602 0.486 -0.904 c 4.207 -7.847 6.251 -15.635 6.295 -24.099 c 0.001 -0.083 0.001 -0.165 0.001 -0.248 C 89.996 6.488 89.993 6.06 89.983 5.63 z M 64.413 37.493 c -1.577 1.577 -3.675 2.447 -5.907 2.447 c -2.231 0 -4.329 -0.869 -5.907 -2.447 c -3.257 -3.258 -3.257 -8.557 0 -11.815 v 0 c 3.259 -3.257 8.559 -3.255 11.814 0 c 1.578 1.577 2.448 3.675 2.448 5.907 S 65.992 35.915 64.413 37.493 z",
+                    style: {
+                        stroke: "none",
+                        strokeWidth: "1",
+                        strokeDasharray: "none",
+                        strokeLinecap: "butt",
+                        strokeLinejoin: "miter",
+                        strokeMiterlimit: "10",
+                        fill: "rgb(255,255,255)",
+                        fillRule: "nonzero",
+                        opacity: "1"
+                    },
+                    transform: " matrix(1 0 0 1 0 0) ",
+                    strokeLinecap: "round"
+                })
+            })
+        ]
+    });
+
 ;// CONCATENATED MODULE: ./src/components/StarryBackground.tsx
+
 
 
 const StarryBackground = (param)=>{
     let { children } = param;
     const canvasRef = (0,react.useRef)(null);
     const [isButtonMoved, setIsButtonMoved] = (0,react.useState)(false);
+    const [isOpenGate, setIsOpenGate] = (0,react.useState)(false);
+    const iconRef = (0,react.useRef)(null);
     (0,react.useEffect)(()=>{
         const canvas = canvasRef.current;
         if (!canvas) return;
@@ -570,24 +652,52 @@ const StarryBackground = (param)=>{
             cancelAnimationFrame(animationFrameId);
         };
     }, []);
+    (0,react.useEffect)(()=>{
+        // setTimeout(() => {
+        //     setIsOpenGate(true);
+        //     iconRef.current?.classList.remove('open-gate');
+        // }, 20000); // 3 seconds for the gate opening animation
+        if (isButtonMoved && iconRef.current) {
+            iconRef.current.classList.add("move-icon");
+        } else if (iconRef.current) {
+            iconRef.current.classList.remove("move-icon");
+        }
+    }, [
+        isButtonMoved
+    ]);
+    (0,react.useEffect)(()=>{
+        if (isOpenGate && iconRef.current) {
+            iconRef.current.classList.add("open-gate");
+            setTimeout(()=>{
+                var _iconRef_current;
+                setIsOpenGate(false);
+                (_iconRef_current = iconRef.current) === null || _iconRef_current === void 0 ? void 0 : _iconRef_current.classList.remove("open-gate");
+            }, 3000); // 3 seconds for the gate opening animation
+        }
+    }, [
+        isOpenGate
+    ]);
     return /*#__PURE__*/ (0,jsx_runtime.jsxs)(jsx_runtime.Fragment, {
         children: [
             /*#__PURE__*/ (0,jsx_runtime.jsx)("canvas", {
                 ref: canvasRef,
-                style: {
-                    position: "fixed",
-                    top: 0,
-                    left: 0,
-                    zIndex: -1
-                }
+                className: "fixed top-0 left-0 z-[-1]"
             }),
             /*#__PURE__*/ (0,jsx_runtime.jsxs)("div", {
-                className: "z-auto relative",
+                className: "absolute top-0 left-0 w-full h-full z-auto",
                 children: [
+                    /*#__PURE__*/ (0,jsx_runtime.jsx)("div", {
+                        ref: iconRef,
+                        className: "absolute top-4 left-4 transition-all duration-500 ease-in-out ".concat(isButtonMoved ? "move-icon" : "", " ").concat(isOpenGate ? "open-gate" : ""),
+                        children: /*#__PURE__*/ (0,jsx_runtime.jsx)(SpaceShipIcon, {})
+                    }),
                     /*#__PURE__*/ (0,jsx_runtime.jsx)("button", {
-                        className: "absolute top-4 ".concat(isButtonMoved ? "left-auto right-4" : "left-4", " transition-all duration-500 ease-in-out"),
-                        onClick: ()=>setIsButtonMoved(!isButtonMoved),
-                        children: isButtonMoved ? "Moved" : "Move"
+                        className: "absolute top-4 left-4",
+                        onClick: ()=>{
+                            setIsButtonMoved(!isButtonMoved);
+                            setIsOpenGate(true);
+                        },
+                        children: isButtonMoved ? /*#__PURE__*/ (0,jsx_runtime.jsx)(AdminIcon, {}) : /*#__PURE__*/ (0,jsx_runtime.jsx)(SpaceShipIcon, {})
                     }),
                     children
                 ]
@@ -619,7 +729,7 @@ function Home() {
         setTransactionLink
     });
     return /*#__PURE__*/ (0,jsx_runtime.jsx)("div", {
-        className: "flex flex-col items-center justify-center min-h-screen ",
+        className: "flex flex-col items-center justify-center min-h-screen text-white",
         children: /*#__PURE__*/ (0,jsx_runtime.jsx)(components_StarryBackground, {
             children: /*#__PURE__*/ (0,jsx_runtime.jsx)(components_UIComponents, {
                 state: state,
