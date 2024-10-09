@@ -82,3 +82,108 @@ export const HomeIcon = () => (
         <path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
     </svg>
 );
+
+export const PlanetIcon = () => (
+    <svg
+        xmlns="http://www.w3.org/2000/svg"
+        xmlnsXlink="http://www.w3.org/1999/xlink"
+        version="1.1"
+        width="32"
+        height="32"
+        viewBox="0 0 32 32"
+        preserveAspectRatio="xMidYMid meet"
+    >
+        <defs>
+            {/* Radial gradient for the atmosphere effect */}
+            <radialGradient id="planetAtmosphere" cx="50%" cy="50%" r="50%">
+                <stop offset="85%" stopColor="#4A90E2" stopOpacity="0.6" />
+                <stop offset="100%" stopColor="#4A90E2" stopOpacity="0" />
+            </radialGradient>
+            {/* Gradient for land masses */}
+            <linearGradient id="landGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stopColor="#2E7D32" />
+                <stop offset="100%" stopColor="#1B5E20" />
+            </linearGradient>
+        </defs>
+        <g
+            style={{
+                stroke: "none",
+                strokeWidth: "0",
+                strokeDasharray: "none",
+                strokeLinecap: "butt",
+                strokeLinejoin: "miter",
+                strokeMiterlimit: "10",
+                fill: "none",
+                fillRule: "nonzero",
+                opacity: "1",
+            }}
+            transform="translate(1.4065934065934016 1.4065934065934016) scale(0.35125 0.35125)"
+        >
+            {/* Base planet circle */}
+            <circle
+                cx="45"
+                cy="45"
+                r="42"
+                fill="#1565C0"
+                style={{
+                    stroke: "none",
+                    opacity: "1",
+                }}
+            />
+
+            {/* Atmosphere effect */}
+            <circle
+                cx="45"
+                cy="45"
+                r="44"
+                fill="url(#planetAtmosphere)"
+                style={{
+                    stroke: "none",
+                    opacity: "0.5",
+                }}
+            />
+
+            {/* Land masses */}
+            <path
+                d="M 35.2 20.5 c 3.8-2.1 8.5-1.8 12.3 0.2 c 2.8 1.5 5.2 3.8 7.1 6.3 c 2.4 3.2 4.1 6.9 5.1 10.8 c 0.7 2.8 1 5.7 0.8 8.6 c -0.2 3.9-1.3 7.7-3.2 11.1 c -1.5 2.7-3.6 5-6.2 6.7 c -2.6 1.7-5.6 2.7-8.7 2.9 c -3.1 0.2-6.2-0.4-9-1.8 c -2.8-1.4-5.2-3.6-7-6.2 c -1.8-2.6-3-5.6-3.5-8.7 c -0.5-3.1-0.3-6.3 0.6-9.3 c 0.9-3 2.5-5.8 4.7-8.1 C 30.5 24.4 32.7 22.1 35.2 20.5 z"
+                fill="url(#landGradient)"
+                style={{
+                    stroke: "none",
+                    opacity: "0.9",
+                }}
+            />
+
+            {/* Additional smaller land masses */}
+            <path
+                d="M 65 40 c 2.1-1.2 4.7-1 6.8 0.1 c 1.5 0.8 2.9 2.1 3.9 3.5 c 1.3 1.8 2.3 3.8 2.8 6 c 0.4 1.5 0.6 3.2 0.4 4.8 c -0.1 2.2-0.7 4.3-1.8 6.2"
+                fill="url(#landGradient)"
+                style={{
+                    stroke: "none",
+                    opacity: "0.85",
+                }}
+            />
+
+            <path
+                d="M 25 60 c 1.5-0.8 3.3-0.7 4.8 0.1 c 1.1 0.6 2 1.5 2.8 2.5 c 0.9 1.3 1.6 2.7 2 4.2 c 0.3 1.1 0.4 2.2 0.3 3.4"
+                fill="url(#landGradient)"
+                style={{
+                    stroke: "none",
+                    opacity: "0.85",
+                }}
+            />
+
+            {/* Atmosphere highlight */}
+            <circle
+                cx="45"
+                cy="45"
+                r="42"
+                fill="none"
+                style={{
+                    stroke: "#ffffff",
+                    strokeWidth: "0.5",
+                    opacity: "0.3",
+                }}
+            />
+        </g>
+    </svg>
+);

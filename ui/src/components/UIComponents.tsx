@@ -79,12 +79,13 @@ const UIComponents = ({ state, displayText, transactionlink, account, onSendTran
 
     let mainContent;
     if (state.hasBeenSetup && state.accountExists) {
+        //{`${account.slice(0, 6)}...${account.slice(-4)}`}
         mainContent = (
             <div className="flex flex-col items-center space-y-4 text-white">
-                <div>Connected account {`${account.slice(0, 6)}...${account.slice(-4)}`}</div>
+                <div>Connected account {account}</div>
                 <div>{displayText}</div>
                 <div>Current root in zkApp: {state.currentRoot!.toString()}</div>
-                <button
+                {/* <button
                     className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700"
                     onClick={onSendTransaction}
                     disabled={state.creatingTransaction}
@@ -97,14 +98,14 @@ const UIComponents = ({ state, displayText, transactionlink, account, onSendTran
                 <SetMembersForm
                     handleMembersChange={handleMembersChange}
                     handleSetMembers={handleSetMembers}
-                />
+                /> */}
             </div>
         );
     }
 
     return (
-        <div className="flex flex-col items-center justify-center min-h-screen p-4 text-white">
-            <div className="text-center">
+        <div className="flex flex-col   justify-self-start   min-h-screen p-4 text-white">
+            <div className="text-top-10">
                 {setup}
                 {accountDoesNotExist}
                 {mainContent}

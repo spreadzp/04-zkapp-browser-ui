@@ -50,8 +50,10 @@ The application will be available at [http://localhost:3000](http://localhost:30
 ### Merkle Tree Structure
 The application uses a Merkle Tree to store and verify spaceship addresses.
 
+
 ### Spaceship Verification
 Before landing on Earth, a spaceship must submit proof that its address is part of the Merkle Tree.
+![mina-schema](https://github.com/user-attachments/assets/a3ad39f6-8597-4dc2-ac54-319121ea49e4)
 
 ### AURO Wallet Interaction
 Users can interact with the blockchain through the AURO wallet to submit proofs and perform transactions.

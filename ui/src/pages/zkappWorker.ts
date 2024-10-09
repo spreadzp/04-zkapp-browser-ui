@@ -50,9 +50,11 @@ const functions = {
         state.transaction = transaction;
 
     },
-    isMember: async (args: { proof: string, key: string }): Promise<string>  => {
+    isMember: async (args: { proof: string, key: string }): Promise<string> => {
+        debugger
+        console.log("🚀 ~ isMember: ~ key:", args.key)
         const proof = MyMerkleWitness.fromJSON(JSON.parse(args.proof));
-        const key = PrivateKey.fromJSON(JSON.parse(args.key));
+        const key = PublicKey.fromBase58(JSON.parse(args.key));
         return JSON.stringify(await state.zkapp!.isMember(proof, key));
     },
     // createUpdateTransaction: async (args: {}) => {

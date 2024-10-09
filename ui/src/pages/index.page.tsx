@@ -3,6 +3,7 @@ import UIComponents from '@/components/UIComponents';
 import TransactionHandler from '@/components/TransactionHandler';
 import StateManager from '@/components/StateManager';
 import StarryBackground from '@/components/StarryBackground';
+import MinaVerse from '@/components/MinaVerse';
 
 export default function Home() {
   const [displayText, setDisplayText] = useState('');
@@ -14,7 +15,7 @@ export default function Home() {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen text-white">
-      <StarryBackground state={state} account={account}>
+      <MinaVerse state={state} account={account}>
         <UIComponents
           state={state}
           displayText={displayText}
@@ -24,7 +25,7 @@ export default function Home() {
           onRefreshCurrentRoot={onRefreshCurrentRoot}
           setMembers={setMembers}
         />
-      </StarryBackground>
+      </MinaVerse>
     </div>
   );
 }

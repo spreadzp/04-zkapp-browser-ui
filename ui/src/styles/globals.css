@@ -98,3 +98,134 @@ a {
 .open-gate {
   animation: openGate 3s linear forwards;
 }
+
+@keyframes moveAround {
+  0% {
+      transform: translate(0, 0) scale(0.33);
+  }
+  25% {
+      transform: translate(calc(100vw - 50px), 0) scale(0.33);
+  }
+  50% {
+    transform: translate(0, calc(100vh - 50px)) scale(0.33);
+  }
+  75% {
+    transform: translate(calc(100vw - 50px), calc(100vh - 50px)) scale(0.33);
+  }
+  100% {
+      transform: translate(0, 0) scale(0.33);
+  }
+}
+
+.moving-space-ship-1 {
+  position: absolute;
+  animation: moveAround 20s ease-in infinite;
+  transform: scale(0.33); /* Make the icons 3 times smaller */
+}
+
+.moving-space-ship-2 {
+  position: absolute;
+  animation: moveAround 30s linear infinite;
+  transform: scale(0.25); /* Make the icons 3 times smaller */
+}
+.moving-space-ship-3 {
+  position: absolute;
+  animation: moveAround 45s ease-out infinite;
+  transform: scale(0.43); /* Make the icons 3 times smaller */
+}
+.moving-space-ship-4 {
+  position: absolute;
+  animation: moveAround 65s cubic-bezier(0.895, 0.03, 0.685, 0.22) infinite;
+  transform: scale(0.55); /* Make the icons 3 times smaller */
+}
+/* styles.css */
+@keyframes showPlanet {
+  0% {
+      opacity: 0;
+      transform: translate(-50%, -50%) scale(0);
+  }
+  100% {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(10);
+  }
+}
+
+@keyframes resizePlanet {
+  0% {
+      transform: translate(-50%, -50%) scale(1);
+  }
+  100% {
+      transform: translate(-50%, -50%) scale(5);
+  }
+}
+
+@keyframes hidePlanet {
+  0% {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(5);
+  }
+  100% {
+      opacity: 0;
+      transform: translate(-50%, -50%) scale(0);
+  }
+}
+
+.planet-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100px;
+  height: 100px;
+  opacity: 0;
+  animation: showPlanet 1s forwards, resizePlanet 5s 10s forwards, hidePlanet 1s 15s forwards;
+}
+
+/* styles.css */
+@keyframes pulseGreen {
+  0% {
+      box-shadow: 0 0 0 0 rgba(50, 205, 50, 0.7);
+  }
+  70% {
+      box-shadow: 0 0 0 20px rgba(50, 205, 50, 0);
+  }
+  100% {
+      box-shadow: 0 0 0 0 rgba(50, 205, 50, 0);
+  }
+}
+
+@keyframes pulseRed {
+  0% {
+      box-shadow: 0 0 0 0 rgba(255, 0, 0, 0.7);
+  }
+  70% {
+      box-shadow: 0 0 0 20px rgba(255, 0, 0, 0);
+  }
+  100% {
+      box-shadow: 0 0 0 0 rgba(255, 0, 0, 0);
+  }
+}
+
+.member-message {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 10px;
+  border-radius: 5px;
+  text-align: center;
+  font-size: 1.5em;
+  font-weight: bold;
+  color: white;
+  z-index: 1000;
+}
+
+.pulse-green {
+  color: green;
+  animation: pulseGreen 2s infinite;
+}
+
+.pulse-red {
+  color: red;
+  animation: pulseRed 2s infinite;
+}
