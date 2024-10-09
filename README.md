@@ -27,7 +27,9 @@ This application utilizes a Merkle Tree structure to store the members of a team
 1. Clone the repository from [this link](https://github.com/spreadzp/04-zkapp-browser-ui.git).
 
 2. Navigate to the project directory.
-
+    ```
+    cd ui
+    ```
 3. Install dependencies using npm or yarn:
   
     ```
