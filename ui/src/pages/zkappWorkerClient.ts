@@ -51,7 +51,7 @@ export default class ZkappWorkerClient {
         });
     }
 
-    async isMember({ proof, key }: { proof: any; key: any }) {
+    async isMember({ proof, key }: { proof: any; key: any }): Promise<any> {
         return this._call('isMember', {
             proof: JSON.stringify(proof),
             key: JSON.stringify(key),
