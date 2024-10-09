@@ -37,7 +37,6 @@ class Membership extends web/* SmartContract */.C3 {
     constructor() {
         super(...arguments);
         this.commitment = (0,web/* State */.ZM)();
-        this.storageTreeRoot = (0,web/* State */.ZM)();
         this.adminPublicKey = (0,web/* State */.ZM)();
     }
     async init() {
@@ -46,19 +45,12 @@ class Membership extends web/* SmartContract */.C3 {
     }
     async initState() {
         const emptyTreeRoot = new web/* MerkleTree */.MV(8).getRoot();
-        this.storageTreeRoot.set(emptyTreeRoot);
+        this.commitment.set(emptyTreeRoot);
     }
-    // @method async setAdmin(adminPublicKey: PublicKey, currentAdminPrivateKey: PrivateKey) {
-    //     const currentAdminPublicKey = this.adminPublicKey.get();
-    //     const isAdminSet = !currentAdminPublicKey.equals(PublicKey.empty());
-    //     if (isAdminSet) {
-    //         this.adminPublicKey.set(adminPublicKey);
-    //     } else {
-    //         let publicKeyFromAdminPrivateKey = currentAdminPrivateKey.toPublicKey();
-    //         this.adminPublicKey.requireEquals(publicKeyFromAdminPrivateKey);
-    //         this.adminPublicKey.set(adminPublicKey);
-    //     }
-    // }
+    async getRoot() {
+        this.commitment.requireEquals(this.commitment.get());
+        return this.commitment.get();
+    }
     async setRoot(commitment) {
         this.commitment.set(commitment);
     }
@@ -75,10 +67,6 @@ __decorate([
     __metadata("design:type", Object)
 ], Membership.prototype, "commitment", void 0);
 __decorate([
-    (0,web/* state */.SB)(web/* Field */.gN),
-    __metadata("design:type", Object)
-], Membership.prototype, "storageTreeRoot", void 0);
-__decorate([
     (0,web/* state */.SB)(web/* PublicKey */.nh),
     __metadata("design:type", Object)
 ], Membership.prototype, "adminPublicKey", void 0);
@@ -94,6 +82,12 @@ __decorate([
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
 ], Membership.prototype, "initState", null);
+__decorate([
+    web/* method */.UD.returns(web/* Field */.gN),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Promise)
+], Membership.prototype, "getRoot", null);
 __decorate([
     web/* method */.UD,
     __metadata("design:type", Function),
