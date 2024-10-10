@@ -32,8 +32,10 @@ const MinaVerse: React.FC<MinaVerseProps> = ({ state, account, children }) => {
                 const indBn = BigInt(index);
                 Tree.setLeaf(indBn, Poseidon.hash(PublicKey.fromBase58(address).toFields()));
             });
-
-            let proof = new MyMerkleWitness(Tree.getWitness(0n));
+            const indexOfMember = addresses.indexOf(account);
+            const convertedIndex = BigInt(indexOfMember);
+            console.log("🚀 ~ isMemberOfLand ~ convertedIndex:", convertedIndex)
+            let proof = new MyMerkleWitness(Tree.getWitness(convertedIndex));
             await state.zkappWorkerClient!.fetchAccount({
                 publicKey: state.zkappPublicKey!,
             });

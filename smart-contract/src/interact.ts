@@ -1,0 +1,130 @@
+/**
+ * This script can be used to interact with the Add contract, after deploying it.
+ *
+ * We call the update() method on the contract, create a proof and send it to the chain.
+ * The endpoint that we interact with is read from your config.json.
+ *
+ * This simulates a user interacting with the zkApp from a browser, except that here, sending the transaction happens
+ * from the script and we're using your pre-funded zkApp account to pay the transaction fee. In a real web app, the user's wallet
+ * would send the transaction and pay the fee.
+ *
+ * To run locally:
+ * Build the project: `$ npm run build`
+ * Run with node:     `$ node build/src/interact.js <deployAlias>`.
+ */
+import fs from 'fs/promises';
+import { fetchAccount, MerkleTree, Mina, NetworkId, PrivateKey, Poseidon, PublicKey } from 'o1js';
+import { Membership } from './Membership.js';
+
+// check command line arg
+let deployAlias = process.argv[2];
+if (!deployAlias)
+    throw Error(`Missing <deployAlias> argument.
+
+Usage:
+node build/src/interact.js <deployAlias>
+`);
+Error.stackTraceLimit = 1000;
+const DEFAULT_NETWORK_ID = 'testnet';
+
+// parse config and private key from file
+type Config = {
+    deployAliases: Record<
+        string,
+        {
+            networkId?: string;
+            url: string;
+            keyPath: string;
+            fee: string;
+            feepayerKeyPath: string;
+            feepayerAlias: string;
+        }
+    >;
+};
+let configJson: Config = JSON.parse(await fs.readFile('config.json', 'utf8'));
+let config = configJson.deployAliases[deployAlias];
+let feepayerKeysBase58: { privateKey: string; publicKey: string } = JSON.parse(
+    await fs.readFile(config.feepayerKeyPath, 'utf8')
+);
+
+let zkAppKeysBase58: { privateKey: string; publicKey: string } = JSON.parse(
+    await fs.readFile(config.keyPath, 'utf8')
+);
+
+let feepayerKey = PrivateKey.fromBase58(feepayerKeysBase58.privateKey);
+let zkAppKey = PrivateKey.fromBase58(zkAppKeysBase58.privateKey);
+
+// set up Mina instance and contract we interact with
+const Network = Mina.Network({
+    // We need to default to the testnet networkId if none is specified for this deploy alias in config.json
+    // This is to ensure the backward compatibility.
+    networkId: (config.networkId ?? DEFAULT_NETWORK_ID) as NetworkId,
+    mina: config.url,
+});
+// const Network = Mina.Network(config.url);
+const fee = Number(config.fee) * 1e9; // in nanomina (1 billion = 1.0 mina)
+Mina.setActiveInstance(Network);
+let feepayerAddress = feepayerKey.toPublicKey();
+let zkAppAddress = zkAppKey.toPublicKey();
+let zkApp = new Membership(zkAppAddress);
+await fetchAccount({ publicKey: zkAppAddress })
+// compile the contract to create prover keys
+console.log('compile the contract...');
+await Membership.compile();
+// Initialize Merkle Tree
+const Tree = new MerkleTree(8);
+
+// Add some addresses to the Merkle Tree
+let addresses = [
+    "B62qiVmjkRqnFoQEBRtBs7jsFQq43f4FkPtNFvt3VM7xmtU7oxgox5R", "B62qro7UZZAGFdKEHvgLSrcGh8FQejDwJiw1N5jKkGQpqfocu8dMt9z",
+    "B62qp5mEnmEfaKhxKi8FcbcmXc6wjFzpQLnHJsDpytxi66R6YRmMVEc",
+    "B62qoWswa1b4Fr6iiT9XfpT6kEH5fgCkPRfZhCwkdspN3WvEfZ362Qi",
+    "B62qp1pkE3xP6cMhj2MG5pT32yLHDv6S9CqwCwuQSFjGY6jkbph8qUV",
+    "B62qjwsyBfqQi86ErgVN5pTemqx99xEdGRt2s6yJy1YuEFjChZ7uoy5"
+]
+
+//Local.testAccounts.map(account => account as Mina.TestPublicKey);
+addresses.forEach((address, index) => {
+
+    const indBn = BigInt(index);
+    Tree.setLeaf(indBn, Poseidon.hash(PublicKey.fromBase58(address).toFields()));
+});
+try {
+    // call update() and send transaction
+    console.log('build transaction and create proof...');
+    let tx = await Mina.transaction(
+        { sender: feepayerAddress, fee },
+        async () => {
+            const root = Tree.getRoot();
+            await zkApp.setRoot(root);
+        }
+    );
+    await tx.prove();
+
+    console.log('send transaction...');
+    const sentTx = await tx.sign([feepayerKey]).send();
+    if (sentTx.status === 'pending') {
+        console.log(
+            '\nSuccess! Update transaction sent.\n' +
+            '\nYour smart contract state will be updated' +
+            '\nas soon as the transaction is included in a block:' +
+            `\n${getTxnUrl(config.url, sentTx.hash)}`
+        );
+    }
+} catch (err) {
+    console.log(err);
+}
+
+function getTxnUrl(graphQlUrl: string, txnHash: string | undefined) {
+    const hostName = new URL(graphQlUrl).hostname;
+    const txnBroadcastServiceName = hostName
+        .split('.')
+        .filter((item) => item === 'minascan')?.[0];
+    const networkName = graphQlUrl
+        .split('/')
+        .filter((item) => item === 'mainnet' || item === 'devnet')?.[0];
+    if (txnBroadcastServiceName && networkName) {
+        return `https://minascan.io/${networkName}/tx/${txnHash}?type=zk-tx`;
+    }
+    return `Transaction hash: ${txnHash}`;
+}
