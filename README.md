@@ -6,7 +6,7 @@ This blockchain-based application is built using Node.js and Next.js, with smart
 
 This application utilizes a Merkle Tree structure to store the members of a team and the addresses of spaceships allowed to land on Earth. Spaceships are permitted to land only if they provide cryptographic proof that they are part of the Merkle Tree.
 
-[proofOfLanding.webm](https://github.com/user-attachments/assets/5dbfe363-6284-4c8f-b020-ebea60531508)
+[mt1010.webm](https://github.com/user-attachments/assets/d5774310-775b-4455-b82d-17fe5633e0e7)
 
 ### Key Features:
 - **Next.js & Node.js Integration:** The frontend uses Next.js for rendering and navigation, while the backend is powered by Node.js to handle blockchain interactions.
@@ -45,6 +45,13 @@ To start the development server:
  
 The application will be available at [http://localhost:3000](http://localhost:3000).
 
+## For smart contract development
+1. Navigate to the project directory.
+    ```
+    cd smart-contract
+    ```
+2. Learn README.md  
+    
 ## How It Works
 
 ### Merkle Tree Structure
