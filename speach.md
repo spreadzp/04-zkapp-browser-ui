@@ -25,6 +25,8 @@ Our repository is organized into two main directories:
 
 ### UI: The frontend interface built with Next.js. **[UI](https://github.com/spreadzp/04-zkapp-browser-ui/tree/main/ui)**
 ### Smart Contract: The backend smart contract logic, written and deployed on the MINA blockchain. **[Smart contract MemberShip.ts](https://github.com/spreadzp/04-zkapp-browser-ui/blob/main/smart-contract/src/Membership.ts)**
+**[Deployed Transaction Details](https://minascan.io/devnet/tx/5Jv7Ec72XhDuzWWLMmVU71486bLiwqiFEnkVCMP1XyQrtWcJzwbW?type=zk-tx)**
+
 You can check out the project repository and the smart contract details through these links:
 **[Repository](https://github.com/spreadzp/04-zkapp-browser-ui)**.
 
